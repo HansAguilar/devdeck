@@ -1,5 +1,6 @@
 "use client"
 
+import Header from "@/components/ui/header";
 import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
@@ -36,6 +37,7 @@ export default function Home() {
     <main className="min-h-screen dark">
       <motion.div ref={ref} variants={fadeInVariant} animate={isInView ? "animate" : "initial"} initial="initial">
         <HeroHighlight className="flex flex-col items-center justify-center">
+          <Header />
           <p className="text-neutral-600 dark:text-neutral-200 text-xs sm:text-base">
             Showcase Your Developer Profile Like Never Before
           </p>
