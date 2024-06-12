@@ -2,13 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
+/* @layer components {
   body{
     @apply absolute inset-0 -z-20 h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]
   }
-}
+} */
 
 @layer utilities {
+  *{
+    padding: 0; margin: 0; box-sizing: border-box;
+  }
   .text-balance {
     text-wrap: balance;
   }
@@ -18,9 +21,9 @@
       -webkit-text-stroke-width: 1px;
   }
 
-  body{
+  /* body{
     background-color: #18181B;
-  }
+  } */
 
   
 }
