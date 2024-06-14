@@ -111,13 +111,6 @@ export default function Page({ params }: { params: { id: string } }) {
 
 
                     <div className="flex items-center gap-4">
-                        {/* <Image
-          src={`/livia1.jpg`}
-          alt="jordans"
-          height="40"
-          width="40"
-          className="object-contain rounded-full"
-        /> */}
                         <div className="border border-slate-600 rounded-full">
                             <svg
                                 viewBox="0 0 34 32"
