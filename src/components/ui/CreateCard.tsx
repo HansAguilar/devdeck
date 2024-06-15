@@ -1,6 +1,7 @@
-// CreateCard.tsx
-
+import Link from 'next/link';
 import React, { useState } from 'react';
+import { ChevronLeftIcon } from '@heroicons/react/20/solid';
+import FormHeader from '../home/create/form-header';
 
 const inputStyle = `flex h-10 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-3 text-sm file:border-0 file:bg-transparent 
           file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
@@ -24,9 +25,9 @@ const CreateCard: React.FC<Props> = ({ isColumnLayout }) => {
   const [skills, setSkills] = useState<string[]>([]);
 
   return (
-    <form className={`p-8 dark ${isColumnLayout ? 'flex-col' : ''}`}>
-      <h2 className="text-lg font-bold text-slate-300 mb-6">Create a Card</h2>
-      <p className="text-sm text-slate-400 mb-8">Fill out the form below to create a new card with your personal and professional details. You can also create your own card design</p>
+    <form className={`p-8 dark overflow-y-auto h-screen ${isColumnLayout ? 'flex-col' : ''}`}>
+      <FormHeader />
+
       <div>
         <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="username">Username</label>
         <input
