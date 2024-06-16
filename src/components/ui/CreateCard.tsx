@@ -1,3 +1,4 @@
+// CreateCard.tsx
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { ChevronLeftIcon } from '@heroicons/react/20/solid';
@@ -17,17 +18,12 @@ const fileInputStyle = `file:mr-4 file:rounded-md file:border file:border-gray-3
 					 dark:file:bg-gray-700 dark:file:text-white dark:file:border-gray-600
 					 dark:hover:file:bg-gray-600`;
 
-interface Props {
-  isColumnLayout: boolean;
-}
-
-const CreateCard: React.FC<Props> = ({ isColumnLayout }) => {
+const CreateCard = () => {
   const [skills, setSkills] = useState<string[]>([]);
 
   return (
-    <form className={`p-8 dark overflow-y-auto h-screen ${isColumnLayout ? 'flex-col' : ''}`}>
+    <form className="p-8 dark">
       <FormHeader />
-
       <div>
         <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="username">Username</label>
         <input
@@ -78,7 +74,7 @@ const CreateCard: React.FC<Props> = ({ isColumnLayout }) => {
 
       <hr className="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
-      <div className={`grid ${isColumnLayout ? 'grid-cols-1' : 'sm:grid-cols-2'} gap-4`}>
+      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4`}>
         <div>
           <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="profilePicture">Profile Picture</label>
           <input
