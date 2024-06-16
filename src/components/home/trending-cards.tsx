@@ -4,12 +4,10 @@ import { cn } from '@/utils/cn'
 
 export default function TrendingCards() {
 	return (
-		<section className='my-24 container m-auto max-sm:px-4'>
+		<section className='py-20 container m-auto max-sm:px-4'>
 			<div>
-				<h1 className='font-bold text-2xl my-4'>Most Popular Cards 🔥</h1>
+				<h1 className='text-slate-300 font-bold text-2xl my-4'>Most Popular Cards 🔥</h1>
 				<div className='grid max-lg:grid-cols-3 max-md:grid-cols-2 grid-cols-4 w-full gap-4'>
-					<Card />
-					<Card />
 					<Card />
 					<Card />
 					<Card />
@@ -18,10 +16,8 @@ export default function TrendingCards() {
 			</div>
 
 			<div className='mt-6'>
-				<h1 className='font-bold text-2xl my-4'>Recent</h1>
+				<h1 className='text-slate-300 font-bold text-2xl my-4'>Recent</h1>
 				<div className='grid max-lg:grid-cols-3 max-md:grid-cols-2 grid-cols-4 w-full gap-4'>
-					<Card />
-					<Card />
 					<Card />
 					<Card />
 					<Card />
