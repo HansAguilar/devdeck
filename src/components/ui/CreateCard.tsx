@@ -1,7 +1,4 @@
-// CreateCard.tsx
-import Link from 'next/link';
 import React, { useState } from 'react';
-import { ChevronLeftIcon } from '@heroicons/react/20/solid';
 import FormHeader from '../home/create/form-header';
 
 const inputStyle = `flex h-10 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-3 text-sm file:border-0 file:bg-transparent 
@@ -22,7 +19,7 @@ const CreateCard = () => {
   const [skills, setSkills] = useState<string[]>([]);
 
   return (
-    <form className="p-8 dark">
+    <form className="p-8 dark overflow-y-auto h-screen">
       <FormHeader />
       <div>
         <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="username">Username</label>
