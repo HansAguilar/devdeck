@@ -47,7 +47,7 @@ const Page: React.FC = () => {
 					</button>
 				</div>
 
-				<div className='w-full min-h-screen max-sm:w-3/5'>
+				<div className='w-full max-sm:w-3/5 overflow-y-auto'>
 					<DevCard />
 				</div>
 			</div>
