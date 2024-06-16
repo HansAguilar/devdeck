@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import CreateCard from '@/components/ui/CreateCard';
 import DevCard from '@/components/ui/DevCard';
-import 'react-resizable/css/styles.css';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 
 const Page: React.FC = () => {
