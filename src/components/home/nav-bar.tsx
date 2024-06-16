@@ -11,8 +11,8 @@ export default function NavBar() {
           group-hover/input:shadow-none transition duration-400`;
 
     return (
-        <div className='fixed top-0 w-full bg-neutral-900 p-4 text-[#E9E9E9] dark'>
-            <div className='flex items-center justify-between'>
+        <div className='fixed top-0 w-full bg-neutral-900 p-4 text-[#E9E9E9] z-50 dark'>
+            <div className='flex items-center justify-between container m-auto'>
                 <span className="text-2xl text-slate-100 font-semibold">
                     De<span className='text-purple-500'>v</span>Deck
                 </span>

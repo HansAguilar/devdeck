@@ -25,7 +25,9 @@ export default function RootLayout({
           sizes="<generated>"
         />
       </Head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+      </body>
     </html>
   );
 }

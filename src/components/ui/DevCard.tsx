@@ -29,8 +29,7 @@ export default function DevCard() {
 	}, [ref])
 
 	return (
-		<div className="dark flex-col gap-4 h-screen w-full flex items-center justify-center z-30 relative">
-
+		<div className="dark flex-col gap-4 min-h-screen w-full z-30 relative">
 			<div ref={ref} className="relative">
 				<div className="absolute z-50 -top-4 left-32">
 					<button className="p-[2px] relative">
