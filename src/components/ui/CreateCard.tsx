@@ -1,5 +1,3 @@
-// CreateCard.tsx
-
 import React, { useState } from 'react';
 
 const inputStyle = `flex h-10 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-3 text-sm file:border-0 file:bg-transparent 
@@ -16,15 +14,11 @@ const fileInputStyle = `file:mr-4 file:rounded-md file:border file:border-gray-3
 					 dark:file:bg-gray-700 dark:file:text-white dark:file:border-gray-600
 					 dark:hover:file:bg-gray-600`;
 
-interface Props {
-  isColumnLayout: boolean;
-}
-
-const CreateCard: React.FC<Props> = ({ isColumnLayout }) => {
+const CreateCard = () => {
   const [skills, setSkills] = useState<string[]>([]);
 
   return (
-    <form className={`p-8 dark ${isColumnLayout ? 'flex-col' : ''}`}>
+    <form className={`p-8 dark`}>
       <h2 className="text-lg font-bold text-slate-300 mb-6">Create a Card</h2>
       <p className="text-sm text-slate-400 mb-8">Fill out the form below to create a new card with your personal and professional details. You can also create your own card design</p>
       <div>
@@ -77,7 +71,7 @@ const CreateCard: React.FC<Props> = ({ isColumnLayout }) => {
 
       <hr className="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
-      <div className={`grid ${isColumnLayout ? 'grid-cols-1' : 'sm:grid-cols-2'} gap-4`}>
+      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4`}>
         <div>
           <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="profilePicture">Profile Picture</label>
           <input
