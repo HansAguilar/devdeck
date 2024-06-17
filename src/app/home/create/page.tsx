@@ -25,7 +25,7 @@ const Page: React.FC = () => {
 				<div className="absolute bottom-0 right-[-20%] top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))]"></div>
 			</div>
 
-			<div className='flex h-screen justify-between w-full max-sm:flex-col relative'>
+			<div className='flex min-h-screen justify-between w-full max-sm:flex-col relative'>
 				<div className={`transition-all duration-300 ${isSidebarOpen ? 'w-full sm:w-2/4' : 'w-0 sm:w-0'} border-b-8 sm:border-b-0 sm:border-r-8 border-slate-600 bg-zinc-900 relative`}
 					onTransitionEnd={() => {
 						if (isSidebarOpen) {
@@ -47,7 +47,7 @@ const Page: React.FC = () => {
 					</button>
 				</div>
 
-				<div className='w-full max-sm:w-3/5 overflow-y-auto'>
+				<div className='w-full min-sm:w-3/5 overflow-y-auto'>
 					<DevCard />
 				</div>
 			</div>
