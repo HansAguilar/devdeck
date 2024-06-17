@@ -1,27 +1,25 @@
-const { user } = require("@/lib/placeholder-data");
+const { user } = require("../src/lib/placeholder-data");
 const bcrypt = require('bcrypt');
 const { db } = require('@vercel/postgres');
 
-
 async function seedUsers(client) {
     try {
-        // const insertedUsers = await Promise.all(
-        //     users.map(async (user) => {
-        //         const hashedPassword = await bcrypt.hash(user.password, 10);
-        //         return client.sql`
-        //   INSERT INTO users (id, name, email, password)
-        //   VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
-        //   ON CONFLICT (id) DO NOTHING;
-        // `;
-        //     }),
-        // );
+        const insertedUsers = await Promise.all(
+            user.map(async (user) => {
+                const hashedPassword = await bcrypt.hash(user.password, 10);
 
-        // console.log(`Seeded ${insertedUsers.length} users`);
+                return client.sql`
+          INSERT INTO users (id, username, password, created_at, updated_at)
+          VALUES (${user.id}, ${user.username}, ${hashedPassword}, ${new Date().toJSON()}, ${new Date().toJSON()});
+        `;
+            }),
+        );
 
-        // return {
-        //     createTable,
-        //     users: insertedUsers,
-        // };
+        console.log(`Seeded ${insertedUsers.length} users`);
+
+        return {
+            users: insertedUsers,
+        };
     } catch (error) {
         console.error('Error seeding users:', error);
         throw error;
