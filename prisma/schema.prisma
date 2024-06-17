@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Card {
+  id          String   @id @default(cuid())
+  username    String   @unique
+  title       String
+  bio         String
+  profile     String
+  bg          String
+  theme       String
+  tech_stack  String[]
+  total_likes BigInt   @default(0)
+  views       BigInt   @default(0)
+  User        User[]
+
+  @@map(name: "card")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  user_card Card     @relation(fields: [cardId], references: [id])
+  cardId    String
+  viewed    String[]
+
+  @@map(name: "users")
+}

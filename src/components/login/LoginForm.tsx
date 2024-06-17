@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useCallback, useRef } from 'react';
-import { toPng } from 'html-to-image';
+import React, { useRef } from 'react';
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 
 export default function LoginForm() {
@@ -21,12 +20,12 @@ export default function LoginForm() {
 	return (
 		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen w-full z-30 relative max-lg:scale-75 max-md:scale-50">
 			<div ref={ref} className="relative">
-				
+
 				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-2xl p-6 sm:p-12 bg-white dark:bg-zinc-900">
 					<p className="font-bold text-[#fff] text-3xl text-center">
 						De<span className="text-[#E568FA]">v</span><span>Deck</span>
 					</p>
-					
+
 					{/* Background Image */}
 					<div className="absolute inset-0 -z-10 h-full w-full bg-slate-950">
 						<div className="absolute bottom-0 left-0 right-0 top-0 bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
@@ -59,21 +58,21 @@ export default function LoginForm() {
 									/>
 								</div>
 							</div>
-							<button 
-									type="submit" 
-									className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white font-semibold text-lg transition duration-200 hover:bg-gradient-to-r hover:from-violet-500 hover:to-purple-600"
+							<button
+								type="submit"
+								className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white font-semibold text-lg transition duration-200 hover:bg-gradient-to-r hover:from-violet-500 hover:to-purple-600"
 							>
-									Login
+								Login
 							</button>
 
 						</form>
 
-							<div className="text-center text-sm text-slate-200">
-									<p>Don't have an account yet?</p>
-									<button onClick={handleCreateAccount} className="text-[#E568FA] hover:underline focus:outline-none">
-											Create one here
-									</button>
-							</div>
+						<div className="text-center text-sm text-slate-200">
+							<p>Don&apos;t have an account yet?</p>
+							<button onClick={handleCreateAccount} className="text-[#E568FA] hover:underline focus:outline-none">
+								Create one here
+							</button>
+						</div>
 					</div>
 				</BackgroundGradient>
 			</div>
