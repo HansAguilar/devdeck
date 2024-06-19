@@ -19,19 +19,20 @@ export default function LoginForm() {
 
 	return (
 		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen w-full z-30 relative max-lg:scale-75 max-md:scale-50">
-			<div ref={ref} className="relative">
-
-				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-2xl p-6 sm:p-12 bg-white dark:bg-zinc-900">
+			<div ref={ref} className="relative w-full sm:w-1/2 md:w-1/3">
+				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 sm:p-12 bg-white dark:bg-zinc-900" >
 					<p className="font-bold text-[#fff] text-3xl text-center">
 						De<span className="text-[#E568FA]">v</span><span>Deck</span>
 					</p>
 
-					{/* Background Image */}
 					<div className="absolute inset-0 -z-10 h-full w-full bg-slate-950">
 						<div className="absolute bottom-0 left-0 right-0 top-0 bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
 					</div>
 					<div className="space-y-6 pt-6">
 						<h4 className="text-2xl font-bold text-center  text-[#fff]">Login</h4>
+						<p className="text-sm text-slate-400 mb-8">
+							Welcome back! Please enter your credentials to access your account.
+						</p>
 						<form className="space-y-6">
 							<div className="flex flex-col">
 								<div>
