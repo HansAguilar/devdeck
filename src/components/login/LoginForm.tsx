@@ -2,17 +2,21 @@
 
 import React, { useRef } from 'react';
 import { BackgroundGradient } from "@/components/ui/background-gradient";
+import { createUser } from '@/lib/actions';
+import { useFormState } from 'react-dom';
+
+const inputStyle = `flex h-12 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-4 text-lg file:border-0 file:bg-transparent 
+file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
+focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-[#A855F7]
+disabled:cursor-not-allowed disabled:opacity-50
+dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
+group-hover/input:shadow-none transition duration-400`;
 
 export default function LoginForm() {
-	const inputStyle = `flex h-12 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-4 text-lg file:border-0 file:bg-transparent 
-          file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
-          focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-[#A855F7]
-          disabled:cursor-not-allowed disabled:opacity-50
-          dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
-          group-hover/input:shadow-none transition duration-400`;
+	const initialState = { message: "", errors: {} };
+	const [state, dispatch] = useFormState(createUser, initialState);
 
 	const ref = useRef<HTMLDivElement>(null)
-
 	const handleCreateAccount = () => {
 		return ('')
 	}
@@ -33,10 +37,10 @@ export default function LoginForm() {
 						<p className="text-sm text-slate-400 mb-8">
 							Welcome back! Please enter your credentials to access your account.
 						</p>
-						<form className="space-y-6">
+						<form className="space-y-6" action={dispatch}>
 							<div className="flex flex-col">
 								<div>
-									<label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="bio">Username</label>
+									<label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="username">Username</label>
 									<input
 										className={inputStyle}
 										id="username"
@@ -45,10 +49,22 @@ export default function LoginForm() {
 										placeholder="@example"
 										maxLength={30}
 										required
+										aria-describedby="username-error"
 									/>
+
+									{/*//! error handling */}
+									<div id="username-error" aria-live="polite" aria-atomic="true">
+										{state.errors?.username &&
+											state.errors.username.map((error: string) => (
+												<p className="mt-2 text-sm text-red-500" key={error}>
+													{error}
+												</p>
+											))}
+									</div>
+									{/*//! error handling */}
 								</div>
 								<div>
-									<label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="bio">Password</label>
+									<label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="password">Password</label>
 									<input
 										className={inputStyle}
 										id="password"
@@ -56,7 +72,18 @@ export default function LoginForm() {
 										name="password"
 										placeholder="password here"
 										required
+										aria-describedby="password-error"
 									/>
+									{/*//! error handling */}
+									<div id="password-error" aria-live="polite" aria-atomic="true">
+										{state.errors?.password &&
+											state.errors.password.map((error: string) => (
+												<p className="mt-2 text-sm text-red-500" key={error}>
+													{error}
+												</p>
+											))}
+									</div>
+									{/*//! error handling */}
 								</div>
 							</div>
 							<button
@@ -70,7 +97,7 @@ export default function LoginForm() {
 
 						<div className="text-center text-sm text-slate-200">
 							<p>Don&apos;t have an account yet?</p>
-							<button onClick={handleCreateAccount} className="text-[#E568FA] hover:underline focus:outline-none">
+							<button className="text-[#E568FA] hover:underline focus:outline-none">
 								Create one here
 							</button>
 						</div>

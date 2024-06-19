@@ -83,6 +83,17 @@ const CreateCard = () => {
             required
           />
         </div>
+        
+        <div>
+          <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="profilePicture">Theme</label>
+          <input
+            className={`${inputStyle} ${fileInputStyle}`}
+            id="profilePicture"
+            type="color"
+            name="profilePicture"
+            required
+          />
+        </div>
 
         <div>
           <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="logo">Logo</label>
