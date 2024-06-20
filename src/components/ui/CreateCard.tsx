@@ -15,121 +15,119 @@ const fileInputStyle = `file:mr-4 file:rounded-md file:border file:border-gray-3
 					 dark:file:bg-gray-700 dark:file:text-white dark:file:border-gray-600
 					 dark:hover:file:bg-gray-600`;
 
-const CreateCard = () => {
-  const [skills, setSkills] = useState<string[]>([]);
+interface CreateCardProps {
+    setBorderColor: (color: string) => void;
+}
 
-  return (
-    <form className="p-8 dark overflow-y-auto h-screen">
-      <FormHeader />
-      <div>
-        <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="username">Username</label>
-        <input
-          className={inputStyle}
-          id="username"
-          type="text"
-          name="username"
-          placeholder="ex. @green_dev"
-          required
-        />
-      </div>
+const CreateCard: React.FC<CreateCardProps> = ({ setBorderColor }) => {
+    const [skills, setSkills] = useState<string[]>([]);
 
-      <div>
-        <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="title">Title</label>
-        <input
-          className={inputStyle}
-          id="title"
-          type="text"
-          name="title"
-          placeholder="ex. frontend developer"
-          required
-        />
-      </div>
+    const handleBorderColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setBorderColor(event.target.value);
+        console.log("create",event.target.value)
+    };
 
-      <div>
-        <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="bio">Bio</label>
-        <input
-          className={inputStyle}
-          id="bio"
-          type="text"
-          name="bio"
-          placeholder="ex. An empty search history reveals more than a full one"
-          maxLength={30}
-          required
-        />
-      </div>
+    return (
+        <form className="p-8 dark overflow-y-auto h-screen">
+            <FormHeader />
+            <div>
+                <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="username">Username</label>
+                <input
+                    className={inputStyle}
+                    id="username"
+                    type="text"
+                    name="username"
+                    placeholder="ex. @green_dev"
+                    required
+                />
+            </div>
 
-      <div>
-        <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="skills">Tech Stack</label>
-        <input
-          className={inputStyle}
-          id="skills"
-          type="text"
-          name="skills"
-          required
-        />
-      </div>
+            <div>
+                <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="title">Title</label>
+                <input
+                    className={inputStyle}
+                    id="title"
+                    type="text"
+                    name="title"
+                    placeholder="ex. frontend developer"
+                    required
+                />
+            </div>
 
-      <hr className="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+            <div>
+                <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="bio">Bio</label>
+                <input
+                    className={inputStyle}
+                    id="bio"
+                    type="text"
+                    name="bio"
+                    placeholder="ex. An empty search history reveals more than a full one"
+                    maxLength={30}
+                    required
+                />
+            </div>
 
-      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4`}>
-        <div>
-          <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="profilePicture">Profile Picture</label>
-          <input
-            className={`${inputStyle} ${fileInputStyle}`}
-            id="profilePicture"
-            type="file"
-            name="profilePicture"
-            accept="image/*"
-            required
-          />
-        </div>
-        
-        <div>
-          <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="profilePicture">Theme</label>
-          <input
-            className={`${inputStyle} ${fileInputStyle}`}
-            id="profilePicture"
-            type="color"
-            name="profilePicture"
-            required
-          />
-        </div>
+            <div>
+                <label className="mb-3 mt-5 block text-xs font-medium text-slate-200" htmlFor="skills">Tech Stack</label>
+                <input
+                    className={inputStyle}
+                    id="skills"
+                    type="text"
+                    name="skills"
+                    required
+                />
+            </div>
 
-        <div>
-          <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="logo">Logo</label>
-          <input
-            className={`${inputStyle} ${fileInputStyle}`}
-            id="logo"
-            type="file"
-            name="logo"
-            accept="image/*"
-            required
-          />
-        </div>
+            <hr className="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
-        <div>
-          <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="backgroundImage">Background Image</label>
-          <input
-            className={`${inputStyle} ${fileInputStyle}`}
-            id="backgroundImage"
-            type="file"
-            name="backgroundImage"
-            accept="image/*"
-            required
-          />
-        </div>
+            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4`}>
+                <div>
+                    <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="profilePicture">Profile Picture</label>
+                    <input
+                        className={`${inputStyle} ${fileInputStyle}`}
+                        id="profilePicture"
+                        type="file"
+                        name="profilePicture"
+                        accept="image/*"
+                        required
+                    />
+                </div>
+                
+                <div>
+                    <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="borderColor">Border Color</label>
+                    <input
+                        className={`${inputStyle}`}
+                        id="borderColor"
+                        type="color"
+                        name="borderColor"
+                        onChange={handleBorderColorChange}
+                        required
+                    />
+                </div>
 
-        <div>
-          <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="theme">Card Theme</label>
-          <select className={`${inputStyle} ${fileInputStyle}`} id="theme" name="theme" required>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-            <option value="colorful">Colorful</option>
-          </select>
-        </div>
-      </div>
-    </form>
-  );
+                <div>
+                    <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="logo">Logo</label>
+                    <input
+                        className={`${inputStyle} ${fileInputStyle}`}
+                        id="logo"
+                        type="file"
+                        name="logo"
+                        accept="image/*"
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="theme">Card Theme</label>
+                    <select className={`${inputStyle}`} id="theme" name="theme" required>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="colorful">Colorful</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    );
 };
 
 export default CreateCard;

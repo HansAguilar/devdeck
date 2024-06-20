@@ -7,26 +7,30 @@ import { BackgroundGradient } from "@/components/ui/background-gradient";
 
 const tech_stack = ["React", "MySQL", "Angular", "Node", "Java", "Redux"];
 
-export default function DevCard() {
+interface DevCardProps {
+	borderColor: string;
+}
 
-	const ref = useRef<HTMLDivElement>(null)
+const DevCard: React.FC<DevCardProps> = ({ borderColor }) => {
+	const ref = useRef<HTMLDivElement>(null);
 
+	console.log("DevCard",borderColor)
 	const onButtonClick = useCallback(() => {
-		if (ref.current === null) {
-			return
-		}
+			if (ref.current === null) {
+					return;
+			}
 
-		toPng(ref.current, { cacheBust: true, })
-			.then((dataUrl) => {
-				const link = document.createElement('a')
-				link.download = 'my-image-name.png'
-				link.href = dataUrl
-				link.click()
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-	}, [ref])
+			toPng(ref.current, { cacheBust: true })
+					.then((dataUrl) => {
+							const link = document.createElement('a');
+							link.download = 'devcard.png';
+							link.href = dataUrl;
+							link.click();
+					})
+					.catch((err) => {
+							console.log(err);
+					});
+	}, [ref]);
 
 	return (
 		<div className="flex items-center justify-center dark flex-col gap-4 min-h-screen w-full z-30 relative max-lg:scale-75 max-md:scale-50">
@@ -39,7 +43,7 @@ export default function DevCard() {
 						</div>
 					</button>
 				</div>
-				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
+				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900" borderColor={borderColor}>
 
 					{/*//^ CUSTOM BG IMAGE */}
 					{/* <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div> */}
@@ -194,3 +198,5 @@ export default function DevCard() {
 		</div>
 	)
 }
+
+export default DevCard;
