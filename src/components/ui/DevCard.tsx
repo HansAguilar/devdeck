@@ -33,7 +33,7 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
 	}, [ref]);
 
 	return (
-		<div className="flex items-center justify-center dark flex-col gap-4 min-h-screen w-full z-30 relative max-lg:scale-75 max-md:scale-50">
+		<div className="flex items-center justify-center dark flex-col gap-4 min-h-screen w-full z-30 relative sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto">
 			<div ref={ref} className="relative">
 				<div className="absolute z-50 -top-4 left-32">
 					<button className="p-[2px] relative">
@@ -45,7 +45,8 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
 				</div>
 				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900" borderColor={borderColor}>
 
-				{Theme} //^ Theme
+				{Theme} 
+				{/* Theme */}
 
 					<div className="absolute -bottom-20 -left-20 opacity-40 grayscale-1 z-0 h-full w-full">
 						<Image

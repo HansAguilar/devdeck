@@ -49,7 +49,7 @@ const Page: React.FC = () => {
                     </button>
                 </div>
 
-                <div className='w-full min-sm:w-3/5 overflow-y-auto'>
+                <div className='w-full min-sm:w-1/2  overflow-y-auto'>
                     <DevCard borderColor={borderColor} Theme={theme} />
                 </div>
             </div>
