@@ -61,3 +61,48 @@ export async function createUser(prevState: State, formData: FormData) {
 	revalidatePath('/signup');
 	redirect('/login');
 }
+
+
+export async function loginUser(prevState: State, formData: FormData) {
+	//~ Validate form using Zod
+	const validatedFields = ChallengeFormSchema.safeParse({
+		username: formData.get('username'),
+		password: formData.get('password'),
+	});
+
+	//~ If form validation fails, return errors early. Otherwise, continue.
+	if (!validatedFields.success) {
+		console.log(validatedFields.error)
+		return {
+			errors: validatedFields.error.flatten().fieldErrors,
+			message: 'Missing Fields. Failed to Create Invoice.',
+		};
+	}
+
+	//~ Prepare data for insertion into the database
+	const { username, password } = validatedFields.data;
+
+	//~ Hash the password
+	const hashedPassword = await bcrypt.hash(password, 10);
+
+	//~ Check creds of user in database
+	try {
+		const getUsername = await sql`
+			SELECT username FROM users
+			WHERE username = ${username};
+    `;
+
+		console.log("get username", getUsername)
+	}
+	catch (error) {
+		//~ If a database error occurs, return a more specific error.
+		console.log(error)
+		return {
+			message: 'Database Error: Failed to Create User.',
+		};
+	}
+
+	//~ Revalidate the cache for the invoices page and redirect the user.
+	revalidatePath('/signup');
+	redirect('/login');
+}

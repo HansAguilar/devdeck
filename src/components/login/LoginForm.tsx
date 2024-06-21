@@ -2,8 +2,9 @@
 
 import React, { useRef } from 'react';
 import { BackgroundGradient } from "@/components/ui/background-gradient";
-import { createUser } from '@/lib/actions';
+import { loginUser } from '@/lib/actions';
 import { useFormState } from 'react-dom';
+import SubmitBtn from './SubmitBtn';
 
 const inputStyle = `flex h-12 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-4 text-lg file:border-0 file:bg-transparent 
 file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
@@ -14,17 +15,15 @@ group-hover/input:shadow-none transition duration-400`;
 
 export default function LoginForm() {
 	const initialState = { message: "", errors: {} };
-	const [state, dispatch] = useFormState(createUser, initialState);
-
+	const [state, dispatch] = useFormState(loginUser, initialState);
 	const ref = useRef<HTMLDivElement>(null)
 	const handleCreateAccount = () => {
 		return ('')
 	}
-
 	return (
-		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen w-full z-30 relative max-lg:scale-75 max-md:scale-50">
-			<div ref={ref} className="relative w-full sm:w-1/2 md:w-1/3">
-				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 sm:p-12 bg-white dark:bg-zinc-900" borderColor='#38BAF8' >
+		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen mx-auto w-full z-30 relative">
+			<div ref={ref} className="relative max-w-lg p-4">
+				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 bg-white dark:bg-zinc-900" >
 					<p className="font-bold text-[#fff] text-3xl text-center">
 						De<span className="text-[#E568FA]">v</span><span>Deck</span>
 					</p>
@@ -48,13 +47,12 @@ export default function LoginForm() {
 										name="username"
 										placeholder="@example"
 										maxLength={30}
-										required
 										aria-describedby="username-error"
 									/>
 
 									{/*//! error handling */}
 									<div id="username-error" aria-live="polite" aria-atomic="true">
-										{state.errors?.username &&
+										{state?.errors?.username &&
 											state.errors.username.map((error: string) => (
 												<p className="mt-2 text-sm text-red-500" key={error}>
 													{error}
@@ -71,12 +69,11 @@ export default function LoginForm() {
 										type="password"
 										name="password"
 										placeholder="password here"
-										required
 										aria-describedby="password-error"
 									/>
 									{/*//! error handling */}
 									<div id="password-error" aria-live="polite" aria-atomic="true">
-										{state.errors?.password &&
+										{state?.errors?.password &&
 											state.errors.password.map((error: string) => (
 												<p className="mt-2 text-sm text-red-500" key={error}>
 													{error}
@@ -86,13 +83,7 @@ export default function LoginForm() {
 									{/*//! error handling */}
 								</div>
 							</div>
-							<button
-								type="submit"
-								className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white font-semibold text-lg transition duration-200 hover:bg-gradient-to-r hover:from-violet-500 hover:to-purple-600"
-							>
-								Login
-							</button>
-
+							<SubmitBtn />
 						</form>
 
 						<div className="text-center text-sm text-slate-200">
