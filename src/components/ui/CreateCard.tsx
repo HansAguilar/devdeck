@@ -136,7 +136,7 @@ const CreateCard: React.FC<CreateCardProps> = ({ setBorderColor, setTheme }) => 
                     <select className={`${inputStyle}`} id="theme" name="theme" onChange={handleThemeChange} required >
                     {Object.keys(cardThemes).map((themeKey) => (
                       <option key={themeKey} value={themeKey}>
-                        Theme {themeKey.substring(5)} {/* Assuming keys are in format 'themeX' */}
+                        Theme {themeKey.substring(5)} 
                       </option>
                     ))}
                     </select>

@@ -24,7 +24,7 @@ export default function LoginForm() {
 	return (
 		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen w-full z-30 relative max-lg:scale-75 max-md:scale-50">
 			<div ref={ref} className="relative w-full sm:w-1/2 md:w-1/3">
-				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 sm:p-12 bg-white dark:bg-zinc-900" >
+				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 sm:p-12 bg-white dark:bg-zinc-900" borderColor='#38BAF8' >
 					<p className="font-bold text-[#fff] text-3xl text-center">
 						De<span className="text-[#E568FA]">v</span><span>Deck</span>
 					</p>
