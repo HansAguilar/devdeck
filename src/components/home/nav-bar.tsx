@@ -33,12 +33,11 @@ export default function NavBar() {
                     </div>
                 </div>
 
-                <div className='cursor-pointer gap-2 flex items-center px-4 py-1.5 bg-neutral-700/70 text-white rounded-md font-semibold border-2 border-neutral-800 hover:border-neutral-700'>
+                <Link href="/home/create" className="cursor-pointer gap-2 flex items-center px-4 py-1.5 bg-neutral-700/70 text-white rounded-md font-semibold border-2 border-neutral-800 hover:border-neutral-700">
                     <PlusIcon className='size-5 text-gray-400' />
-                    <Link href="/home/create" className="outline-none border-none appearance-none">
-                        Create
-                    </Link>
-                </div>
+                    <span>Create</span>
+                </Link>
+
             </div>
         </div>
     )
