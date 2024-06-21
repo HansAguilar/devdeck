@@ -7,9 +7,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 const Page: React.FC = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
     const [isSidebarFullyOpen, setIsSidebarFullyOpen] = useState<boolean>(true);
-    const [borderColor, setBorderColor] = useState<string>(""); // Default border color
-
-		console.log("page",borderColor)
+    const [borderColor, setBorderColor] = useState<string>(""); 
+		const [theme,setTheme] = useState<React.ReactNode>();
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -36,7 +35,7 @@ const Page: React.FC = () => {
                         }
                     }}
                 >
-                    {isSidebarOpen && isSidebarFullyOpen && <CreateCard setBorderColor={setBorderColor} />}
+                    {isSidebarOpen && isSidebarFullyOpen && <CreateCard setBorderColor={setBorderColor} setTheme={setTheme} />}
                     <button
                         onClick={toggleSidebar}
                         className={`absolute cursor-pointer top-1/2 transform -translate-y-1/2 p-1 bg-gray-700 text-white z-50 rounded hidden sm:block ${isSidebarOpen ? 'right-[-20px]' : 'right-[-25px]'} text-lg hover:bg-gray-600 hover:text-gray-100`}
@@ -51,7 +50,7 @@ const Page: React.FC = () => {
                 </div>
 
                 <div className='w-full min-sm:w-3/5 overflow-y-auto'>
-                    <DevCard borderColor={borderColor} />
+                    <DevCard borderColor={borderColor} Theme={theme} />
                 </div>
             </div>
         </div>

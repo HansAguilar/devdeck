@@ -15,16 +15,30 @@ const fileInputStyle = `file:mr-4 file:rounded-md file:border file:border-gray-3
 					 dark:file:bg-gray-700 dark:file:text-white dark:file:border-gray-600
 					 dark:hover:file:bg-gray-600`;
 
-interface CreateCardProps {
-    setBorderColor: (color: string) => void;
+const cardThemes : {[key: string]: React.ReactNode} = {
+  theme1: <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>,
+  theme2: <div className="absolute inset-0 -z-10 h-full w-full bg-black"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div><div className="absolute left-0 right-0 top-[-10%] h-[1000px] w-[1000px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]"></div></div>,
+  theme3: <div className="absolute inset-0 -z-10 h-full w-full bg-slate-950"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div></div>,
+  theme4: <div className="absolute inset-0 -z-20 h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"></div> 
+  //dagdag nalang dito
 }
 
-const CreateCard: React.FC<CreateCardProps> = ({ setBorderColor }) => {
-    const [skills, setSkills] = useState<string[]>([]);
+interface CreateCardProps {
+    setBorderColor: (color: string) => void;
+    setTheme: (theme : React.ReactNode ) => void;
+}
 
+const CreateCard: React.FC<CreateCardProps> = ({ setBorderColor, setTheme }) => {
+    const [skills, setSkills] = useState<string[]>([]);
+ 
     const handleBorderColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBorderColor(event.target.value);
-        console.log("create",event.target.value)
+    };
+
+    const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+
+      const selectedTheme = event.target.value;
+      setTheme(cardThemes[selectedTheme]);
     };
 
     return (
@@ -119,10 +133,12 @@ const CreateCard: React.FC<CreateCardProps> = ({ setBorderColor }) => {
 
                 <div>
                     <label className="mb-3 block text-xs font-medium text-slate-200" htmlFor="theme">Card Theme</label>
-                    <select className={`${inputStyle}`} id="theme" name="theme" required>
-                        <option value="light">Light</option>
-                        <option value="dark">Dark</option>
-                        <option value="colorful">Colorful</option>
+                    <select className={`${inputStyle}`} id="theme" name="theme" onChange={handleThemeChange} required >
+                    {Object.keys(cardThemes).map((themeKey) => (
+                      <option key={themeKey} value={themeKey}>
+                        Theme {themeKey.substring(5)} {/* Assuming keys are in format 'themeX' */}
+                      </option>
+                    ))}
                     </select>
                 </div>
             </div>
