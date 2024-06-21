@@ -7,26 +7,30 @@ import { BackgroundGradient } from "@/components/ui/background-gradient";
 
 const tech_stack = ["React", "MySQL", "Angular", "Node", "Java", "Redux"];
 
-export default function DevCard() {
+interface DevCardProps {
+	borderColor: string;
+	Theme?: React.ReactNode
+}
 
-	const ref = useRef<HTMLDivElement>(null)
+const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
+	const ref = useRef<HTMLDivElement>(null);
 
 	const onButtonClick = useCallback(() => {
-		if (ref.current === null) {
-			return
-		}
+			if (ref.current === null) {
+					return;
+			}
 
-		toPng(ref.current, { cacheBust: true, })
-			.then((dataUrl) => {
-				const link = document.createElement('a')
-				link.download = 'my-image-name.png'
-				link.href = dataUrl
-				link.click()
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-	}, [ref])
+			toPng(ref.current, { cacheBust: true })
+					.then((dataUrl) => {
+							const link = document.createElement('a');
+							link.download = 'devcard.png';
+							link.href = dataUrl;
+							link.click();
+					})
+					.catch((err) => {
+							console.log(err);
+					});
+	}, [ref]);
 
 	return (
 		<div className="flex items-center justify-center dark flex-col gap-4 min-h-screen w-full z-30 relative max-lg:scale-75 max-md:scale-50">
@@ -39,17 +43,10 @@ export default function DevCard() {
 						</div>
 					</button>
 				</div>
-				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900">
+				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900" borderColor={borderColor}>
 
-					{/*//^ CUSTOM BG IMAGE */}
-					{/* <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div> */}
+				{Theme}
 
-					{/* <div className="absolute inset-0 -z-10 h-full w-full bg-black"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div><div className="absolute left-0 right-0 top-[-10%] h-[1000px] w-[1000px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]"></div></div> */}
-
-					<div className="absolute inset-0 -z-10 h-full w-full bg-slate-950"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div></div>
-
-					{/* <div className="absolute inset-0 -z-20 h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"></div> */}
-					{/*//^ CUSTOM BG IMAGE */}
 
 					<div className="absolute -bottom-20 -left-20 opacity-40 grayscale-1 z-0 h-full w-full">
 						<Image
@@ -194,3 +191,5 @@ export default function DevCard() {
 		</div>
 	)
 }
+
+export default DevCard;
