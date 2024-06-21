@@ -45,8 +45,7 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
 				</div>
 				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900" borderColor={borderColor}>
 
-				{Theme}
-
+				{Theme} //^ Theme
 
 					<div className="absolute -bottom-20 -left-20 opacity-40 grayscale-1 z-0 h-full w-full">
 						<Image
