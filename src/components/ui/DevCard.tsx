@@ -10,9 +10,10 @@ const tech_stack = ["React", "MySQL", "Angular", "Node", "Java", "Redux"];
 interface DevCardProps {
 	borderColor: string;
 	Theme?: React.ReactNode
+	name: string
 }
 
-const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
+const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
 	const onButtonClick = useCallback(() => {
@@ -78,8 +79,7 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
 							</svg>
 						</div>
 
-
-						<p className="text-xl font-semibold sm:text-xl text-black  dark:text-neutral-200">@adrianvargas</p>
+						<h2 className="text-xl font-semibold sm:text-xl text-black  dark:text-neutral-200">@{name}</h2>
 					</div>
 
 					<br /><br /><br /><br /><br />

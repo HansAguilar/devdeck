@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { BackgroundGradient } from "@/components/ui/background-gradient";
+import Link from 'next/link';
 
 export default function SignUpForm() {
-	const inputStyle = `flex h-12 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-4 text-lg file:border-0 file:bg-transparent 
+	const inputStyle = `flex h-10 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-3 text-sm file:border-0 file:bg-transparent 
           file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
           focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-[#A855F7]
           disabled:cursor-not-allowed disabled:opacity-50
@@ -12,7 +13,6 @@ export default function SignUpForm() {
           group-hover/input:shadow-none transition duration-400`;
 
 	const ref = useRef<HTMLDivElement>(null);
-  const [fullName, setFullName] = useState('');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [errors, setErrors] = useState<{ fullName?: string; username?: string; password?: string }>({});
@@ -20,10 +20,7 @@ export default function SignUpForm() {
 	const handleCreateAccount = (e: React.FormEvent) => {
 		e.preventDefault();
 		const newErrors: { fullName?: string; username?: string; password?: string } = {};
-
-		if (!fullName) {
-			newErrors.fullName = 'Full name is required';
-		}
+		
 		if (!username) {
 			newErrors.username = 'Username is required';
 		}
@@ -34,10 +31,9 @@ export default function SignUpForm() {
 		if (Object.keys(newErrors).length > 0) {
 			setErrors(newErrors);
 		} else {
-			console.log('Full Name:', fullName);
 			console.log('Username:', username);
 			console.log('Password:', password);
-		
+
 			setErrors({});
 		}
 	};
@@ -57,25 +53,11 @@ export default function SignUpForm() {
 					<div className="space-y-6 pt-6">
 						<h4 className="text-2xl font-bold text-center  text-[#fff]">Create an account</h4>
 
-            <p className="text-sm text-slate-400 mb-8">
-              By creating an account, you can access exclusive features and personalize your experience.
-            </p>
+						<p className="text-sm text-slate-400 mb-8">
+							By creating an account, you can access exclusive features and personalize your experience.
+						</p>
 						<form className="space-y-6" onSubmit={handleCreateAccount}>
 							<div className="flex flex-col">
-                <div>
-                    <label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="fullName">Your Full Name</label>
-                    <input
-                      className={inputStyle}
-                      id="fullName"
-                      type="text"
-                      name="fullName"
-                      placeholder="Your full name"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      required
-                    />
-                    {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName}</p>}
-                </div>
 								<div>
 									<label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="username">Username</label>
 									<input
@@ -109,7 +91,7 @@ export default function SignUpForm() {
 							<button
 								type="submit"
 								className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white font-semibold text-lg transition duration-200 hover:bg-gradient-to-r hover:from-violet-500 hover:to-purple-600"
-                onClick={handleCreateAccount}
+								onClick={handleCreateAccount}
 							>
 								Create an account
 							</button>
@@ -117,9 +99,9 @@ export default function SignUpForm() {
 
 						<div className="text-center text-sm text-slate-200">
 							<p>Already have an account?</p>
-							<button className="text-[#E568FA] hover:underline focus:outline-none">
+							<Link href="login" className="text-[#E568FA] hover:underline focus:outline-none">
 								Sign in here
-							</button>
+							</Link>
 						</div>
 					</div>
 				</BackgroundGradient>
