@@ -10,40 +10,17 @@ const tech_stack = ["React", "MySQL", "Angular", "Node", "Java", "Redux"];
 interface DevCardProps {
 	borderColor?: string;
 	Theme?: React.ReactNode
-	name: string
 }
 
-const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
+const TestCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
-	const onButtonClick = useCallback(() => {
-			if (ref.current === null) {
-					return;
-			}
 
-			toPng(ref.current, { cacheBust: true })
-					.then((dataUrl) => {
-							const link = document.createElement('a');
-							link.download = 'devcard.png';
-							link.href = dataUrl;
-							link.click();
-					})
-					.catch((err) => {
-							console.log(err);
-					});
-	}, [ref]);
 
 	return (
-		<div className="flex items-center justify-center dark flex-col gap-4 min-h-screen w-full z-30 relative sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto">
+		<div className="flex items-center dark flex-col gap-4 min-h-screen w-full z-30 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl">
 			<div ref={ref} className="relative">
-				<div className="absolute z-50 -top-4 left-32">
-					<button className="p-[2px] relative">
-						<div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-						<div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
-							<p className="font-bold text-[#fff]">De<span className="text-[#E568FA]">v</span><span className="">Deck</span></p>
-						</div>
-					</button>
-				</div>
+
 				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900" borderColor={borderColor}>
 
 				{Theme} 
@@ -79,7 +56,8 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
 							</svg>
 						</div>
 
-						<h2 className="text-xl font-semibold sm:text-xl text-black  dark:text-neutral-200">@{name}</h2>
+
+						<p className="text-xl font-semibold sm:text-xl text-black  dark:text-neutral-200 z-50">@adrianvargas</p>
 					</div>
 
 					<br /><br /><br /><br /><br />
@@ -97,10 +75,7 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
 						</div>
 					</div>
 
-					<p className="z-40 relative font-semibold text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
-						Senior Software Engineer
-					</p>
-
+					
 					<div className="bg-[#00091D] p-4 w-full rounded">
 						<p className="z-40 relative text-sm text-neutral-600 dark:text-neutral-400">
 							Build fast, fail fast ⚡
@@ -161,35 +136,8 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
 			</div>
 
 
-			<div className="flex items-center gap-4">
-				<button onClick={onButtonClick} className="inline-flex gap-4 h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-					Download
-
-					<svg fill="none" viewBox="0 0 24 24" height="1.5em" width="1.5em" >
-						<path
-							fill="currentColor"
-							d="M11 5a1 1 0 112 0v7.158l3.243-3.243 1.414 1.414L12 15.986 6.343 10.33l1.414-1.414L11 12.158V5z"
-						/>
-						<path
-							fill="currentColor"
-							d="M4 14h2v4h12v-4h2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4z"
-						/>
-					</svg>
-				</button>
-
-				<div
-					className="inline-flex gap-4 h-12 items-center justify-center rounded-md border border-slate-800 bg-[#000103]/50 px-6 font-medium text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-					<div className="flex gap-1">
-						<span>Copy link</span>
-					</div>
-					<span className="flex text-gray-800 cursor-pointer w-5 h-5 hover:text-gray-400 duration-200">
-						<svg className="fill-current" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 115.77 122.88"><g><path className="st0" d="M89.62,13.96v7.73h12.19h0.01v0.02c3.85,0.01,7.34,1.57,9.86,4.1c2.5,2.51,4.06,5.98,4.07,9.82h0.02v0.02 v73.27v0.01h-0.02c-0.01,3.84-1.57,7.33-4.1,9.86c-2.51,2.5-5.98,4.06-9.82,4.07v0.02h-0.02h-61.7H40.1v-0.02 c-3.84-0.01-7.34-1.57-9.86-4.1c-2.5-2.51-4.06-5.98-4.07-9.82h-0.02v-0.02V92.51H13.96h-0.01v-0.02c-3.84-0.01-7.34-1.57-9.86-4.1 c-2.5-2.51-4.06-5.98-4.07-9.82H0v-0.02V13.96v-0.01h0.02c0.01-3.85,1.58-7.34,4.1-9.86c2.51-2.5,5.98-4.06,9.82-4.07V0h0.02h61.7 h0.01v0.02c3.85,0.01,7.34,1.57,9.86,4.1c2.5,2.51,4.06,5.98,4.07,9.82h0.02V13.96L89.62,13.96z M79.04,21.69v-7.73v-0.02h0.02 c0-0.91-0.39-1.75-1.01-2.37c-0.61-0.61-1.46-1-2.37-1v0.02h-0.01h-61.7h-0.02v-0.02c-0.91,0-1.75,0.39-2.37,1.01 c-0.61,0.61-1,1.46-1,2.37h0.02v0.01v64.59v0.02h-0.02c0,0.91,0.39,1.75,1.01,2.37c0.61,0.61,1.46,1,2.37,1v-0.02h0.01h12.19V35.65 v-0.01h0.02c0.01-3.85,1.58-7.34,4.1-9.86c2.51-2.5,5.98-4.06,9.82-4.07v-0.02h0.02H79.04L79.04,21.69z M105.18,108.92V35.65v-0.02 h0.02c0-0.91-0.39-1.75-1.01-2.37c-0.61-0.61-1.46-1-2.37-1v0.02h-0.01h-61.7h-0.02v-0.02c-0.91,0-1.75,0.39-2.37,1.01 c-0.61,0.61-1,1.46-1,2.37h0.02v0.01v73.27v0.02h-0.02c0,0.91,0.39,1.75,1.01,2.37c0.61,0.61,1.46,1,2.37,1v-0.02h0.01h61.7h0.02 v0.02c0.91,0,1.75-0.39,2.37-1.01c0.61-0.61,1-1.46,1-2.37h-0.02V108.92L105.18,108.92z" /></g></svg>
-					</span>
-				</div>
-
-			</div>
 		</div>
 	)
 }
 
-export default DevCard;
+export default TestCard;
