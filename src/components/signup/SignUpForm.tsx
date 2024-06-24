@@ -19,7 +19,7 @@ export default function SignUpForm() {
 	const [password, setPassword] = useState('');
 
 	return (
-		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen w-full z-30 relative max-lg:scale-75 max-md:scale-50">
+		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen w-full z-30 relative">
 			<motion.div initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} ref={ref} className="relative w-full max-w-md my-28">
 
 				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 bg-white dark:bg-zinc-900" borderColor='#38BAF8' >
