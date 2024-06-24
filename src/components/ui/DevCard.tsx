@@ -9,11 +9,15 @@ const tech_stack = ["React", "MySQL", "Angular", "Node", "Java", "Redux"];
 
 interface DevCardProps {
 	borderColor?: string;
-	Theme?: React.ReactNode
-	name: string
+	Theme?: React.ReactNode;
+	name: string;
+	title: string;
+	bio: string;
+	profilePic : string | null;
+	logo : string | null;
 }
 
-const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
+const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name, title, bio, profilePic,logo }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
 	const onButtonClick = useCallback(() => {
@@ -51,7 +55,7 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
 
 					<div className="absolute -bottom-20 -left-20 opacity-40 grayscale-1 z-0 h-full w-full">
 						<Image
-							src={`/react.png`}
+							src={logo || `/defaultBg.png`}
 							alt="jordans"
 							height="1600"
 							width="1500"
@@ -79,7 +83,7 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
 							</svg>
 						</div>
 
-						<h2 className="text-xl font-semibold sm:text-xl text-black  dark:text-neutral-200">@{name}</h2>
+						<h2 className="text-xl font-semibold sm:text-xl text-black  dark:text-neutral-200 z-40">@{name}</h2>
 					</div>
 
 					<br /><br /><br /><br /><br />
@@ -88,7 +92,7 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
 						<div className="relative">
 							<div className=" bg-gradient-to-b from-transparent to-black rounded-full z-30 h-full w-full absolute"></div>
 							<Image
-								src={`/adrian.jpg`}
+								src={profilePic || `/default.png`}
 								alt="jordans"
 								height="250"
 								width="250"
@@ -98,15 +102,14 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name }) => {
 					</div>
 
 					<p className="z-40 relative font-semibold text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
-						Senior Software Engineer
+						{title}
 					</p>
 
-					<div className="bg-[#00091D] p-4 w-full rounded">
+					<div className="p-4 w-full rounded">
 						<p className="z-40 relative text-sm text-neutral-600 dark:text-neutral-400">
-							Build fast, fail fast ⚡
+							{bio}
 						</p>
 					</div>
-
 
 					<div className="flex flex-wrap gap-1 mt-4">
 						{
