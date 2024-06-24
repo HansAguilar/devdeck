@@ -6,8 +6,10 @@ import { loginUser } from '@/lib/actions';
 import { useFormState } from 'react-dom';
 import SubmitBtn from './SubmitBtn';
 import Link from 'next/link';
+import { motion } from "framer-motion";
+import Image from 'next/image';
 
-const inputStyle = `flex h-10 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-3 text-sm file:border-0 file:bg-transparent 
+const inputStyle = `flex w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-2.5 text-sm file:border-0 file:bg-transparent 
 file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-[#A855F7]
 disabled:cursor-not-allowed disabled:opacity-50
@@ -23,8 +25,18 @@ export default function LoginForm() {
 	}
 	return (
 		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen mx-auto w-full z-30 relative">
-			<div ref={ref} className="relative max-w-lg p-4">
-				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 bg-white dark:bg-zinc-900" borderColor='#38BAF8' >
+			<motion.div initial={{ x: -100, opacity: 0 }}
+				animate={{ x: 0, opacity: 1 }}
+				exit={{ opacity: 0 }} ref={ref} className="relative max-w-md my-28">
+
+				<motion.div  initial={{ y: 10, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					exit={{ opacity: 0 }} transition={{delay: .4}} className='absolute -top-24'>
+					<Image src="/login1.png" alt='3d' width={180} height={200} />
+				</motion.div>
+
+				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 bg-white dark:bg-zinc-900" borderColor='#38BAF8'>
+
 					<p className="font-bold text-[#fff] text-3xl text-center">
 						De<span className="text-[#E568FA]">v</span><span>Deck</span>
 					</p>
@@ -95,7 +107,7 @@ export default function LoginForm() {
 						</div>
 					</div>
 				</BackgroundGradient>
-			</div>
+			</motion.div>
 		</div>
 	)
 }

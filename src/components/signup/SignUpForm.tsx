@@ -3,9 +3,11 @@
 import React, { useState, useRef } from 'react';
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import Link from 'next/link';
+import SubmitBtn from './SubmitBtn';
+import { motion } from "framer-motion";
 
 export default function SignUpForm() {
-	const inputStyle = `flex h-10 w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-3 text-sm file:border-0 file:bg-transparent 
+	const inputStyle = `flex w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-2.5 text-sm file:border-0 file:bg-transparent 
           file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
           focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-[#A855F7]
           disabled:cursor-not-allowed disabled:opacity-50
@@ -15,34 +17,12 @@ export default function SignUpForm() {
 	const ref = useRef<HTMLDivElement>(null);
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [errors, setErrors] = useState<{ fullName?: string; username?: string; password?: string }>({});
-
-	const handleCreateAccount = (e: React.FormEvent) => {
-		e.preventDefault();
-		const newErrors: { fullName?: string; username?: string; password?: string } = {};
-		
-		if (!username) {
-			newErrors.username = 'Username is required';
-		}
-		if (!password) {
-			newErrors.password = 'Password is required';
-		}
-
-		if (Object.keys(newErrors).length > 0) {
-			setErrors(newErrors);
-		} else {
-			console.log('Username:', username);
-			console.log('Password:', password);
-
-			setErrors({});
-		}
-	};
 
 	return (
 		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen w-full z-30 relative max-lg:scale-75 max-md:scale-50">
-			<div ref={ref} className="relative w-full sm:w-1/2 md:w-1/3">
+			<motion.div initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} ref={ref} className="relative w-full max-w-md my-28">
 
-				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 sm:p-12 bg-white dark:bg-zinc-900" borderColor='#38BAF8' >
+				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-3xl p-6 bg-white dark:bg-zinc-900" borderColor='#38BAF8' >
 					<p className="font-bold text-[#fff] text-3xl text-center">
 						De<span className="text-[#E568FA]">v</span><span>Deck</span>
 					</p>
@@ -56,7 +36,7 @@ export default function SignUpForm() {
 						<p className="text-sm text-slate-400 mb-8">
 							By creating an account, you can access exclusive features and personalize your experience.
 						</p>
-						<form className="space-y-6" onSubmit={handleCreateAccount}>
+						<form className="space-y-6" >
 							<div className="flex flex-col">
 								<div>
 									<label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="username">Username</label>
@@ -71,7 +51,6 @@ export default function SignUpForm() {
 										onChange={(e) => setUsername(e.target.value)}
 										required
 									/>
-									{errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
 								</div>
 								<div>
 									<label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="password">Password</label>
@@ -85,16 +64,9 @@ export default function SignUpForm() {
 										onChange={(e) => setPassword(e.target.value)}
 										required
 									/>
-									{errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
 								</div>
 							</div>
-							<button
-								type="submit"
-								className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white font-semibold text-lg transition duration-200 hover:bg-gradient-to-r hover:from-violet-500 hover:to-purple-600"
-								onClick={handleCreateAccount}
-							>
-								Create an account
-							</button>
+							<SubmitBtn />
 						</form>
 
 						<div className="text-center text-sm text-slate-200">
@@ -105,7 +77,7 @@ export default function SignUpForm() {
 						</div>
 					</div>
 				</BackgroundGradient>
-			</div>
+			</motion.div>
 		</div>
 	);
 }

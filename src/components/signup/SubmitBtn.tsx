@@ -2,13 +2,13 @@ import React from 'react'
 import { useFormStatus } from 'react-dom';
 
 export default function SubmitBtn() {
-	const { pending} = useFormStatus();
+    const { pending } = useFormStatus();
 
     return (
         <button
             disabled={pending}
             type="submit"
-            className="w-full leading-tight p-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-md text-white font-semibold transition duration-200 hover:bg-gradient-to-r hover:from-violet-500 hover:to-purple-600"
+            className="w-full p-2.5 leading-tight bg-gradient-to-r from-indigo-500 to-purple-500 rounded-md text-white font-semibold transition duration-200 hover:bg-gradient-to-r hover:from-violet-500 hover:to-purple-600"
         >
             {
                 pending ? <div role="status">
@@ -19,7 +19,7 @@ export default function SubmitBtn() {
                     <span className="sr-only">Loading...</span>
                 </div>
                     :
-                    "Login"
+                    "Create an Account"
             }
         </button>
     )
