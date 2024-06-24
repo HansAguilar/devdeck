@@ -24,14 +24,14 @@ export default function LoginForm() {
 		return ('')
 	}
 	return (
-		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen mx-auto w-full z-30 relative">
+		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen mx-auto w-full z-30 relative ">
 			<motion.div initial={{ x: -100, opacity: 0 }}
 				animate={{ x: 0, opacity: 1 }}
 				exit={{ opacity: 0 }} ref={ref} className="relative max-w-md my-28">
 
-				<motion.div  initial={{ y: 10, opacity: 0 }}
+				<motion.div initial={{ y: 10, opacity: 0 }}
 					animate={{ y: 0, opacity: 1 }}
-					exit={{ opacity: 0 }} transition={{delay: .4}} className='absolute -top-24'>
+					exit={{ opacity: 0 }} transition={{ delay: .4 }} className='absolute -top-24'>
 					<Image src="/login1.png" alt='3d' width={180} height={200} />
 				</motion.div>
 
@@ -58,7 +58,7 @@ export default function LoginForm() {
 										id="username"
 										type="text"
 										name="username"
-										placeholder="@example"
+										placeholder="ex. zebar24"
 										maxLength={30}
 										aria-describedby="username-error"
 									/>

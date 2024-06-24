@@ -4,12 +4,12 @@ export type User = {
     password: string;
     createdAt: string;
     updatedAt: string;
-    user_card?: Card;
+    user_card?: Cards;
     cardId?: string;
     viewed: string[]
 };
 
-export type Card = {
+export type Cards = {
     id: string;
     username: string;
     title: string;

@@ -4,6 +4,9 @@ import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 const bcrypt = require('bcrypt');
+import { User } from "./definitions";
+import { fetchCards, fetchUsers } from './data';
+
 
 export type State = {
 	errors?: {
@@ -18,7 +21,6 @@ const ChallengeFormSchema = z.object({
 	username: z.string().min(1, 'Username is required'),
 	password: z.string().min(1, 'Password is required'),
 });
-
 
 export async function createUser(prevState: State, formData: FormData) {
 	//~ Validate form using Zod
@@ -62,7 +64,6 @@ export async function createUser(prevState: State, formData: FormData) {
 	redirect('/login');
 }
 
-
 export async function loginUser(prevState: State, formData: FormData) {
 	//~ Validate form using Zod
 	const validatedFields = ChallengeFormSchema.safeParse({
@@ -79,20 +80,26 @@ export async function loginUser(prevState: State, formData: FormData) {
 		};
 	}
 
-	//~ Prepare data for insertion into the database
+	//~ Destruct the form
 	const { username, password } = validatedFields.data;
-
-	//~ Hash the password
-	const hashedPassword = await bcrypt.hash(password, 10);
 
 	//~ Check creds of user in database
 	try {
-		const getUsername = await sql`
-			SELECT username FROM users
+		const getUsername = await sql<User>`
+			SELECT * FROM users
 			WHERE username = ${username};
     `;
 
-		console.log("get username", getUsername)
+		//~ Decrypt the password
+		const isValidCheckpoint = await bcrypt.compare(password, getUsername.rows[0].password);
+
+		if (isValidCheckpoint) {
+			fetchUsers();
+			fetchCards();
+			return {
+				user: getUsername.rows[0],
+			}
+		}
 	}
 	catch (error) {
 		//~ If a database error occurs, return a more specific error.

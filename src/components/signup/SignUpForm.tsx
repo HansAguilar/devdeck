@@ -5,18 +5,21 @@ import { BackgroundGradient } from "@/components/ui/background-gradient";
 import Link from 'next/link';
 import SubmitBtn from './SubmitBtn';
 import { motion } from "framer-motion";
+import { useFormState } from 'react-dom';
+import { createUser } from '@/lib/actions';
+
+const inputStyle = `flex w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-2.5 text-sm file:border-0 file:bg-transparent 
+file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
+focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-[#A855F7]
+disabled:cursor-not-allowed disabled:opacity-50
+dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
+group-hover/input:shadow-none transition duration-400`;
 
 export default function SignUpForm() {
-	const inputStyle = `flex w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-2.5 text-sm file:border-0 file:bg-transparent 
-          file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
-          focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-[#A855F7]
-          disabled:cursor-not-allowed disabled:opacity-50
-          dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
-          group-hover/input:shadow-none transition duration-400`;
+	const initialState = { message: "", errors: {} };
+	const [state, dispatch] = useFormState(createUser, initialState);
 
 	const ref = useRef<HTMLDivElement>(null);
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
 
 	return (
 		<div className="flex items-center justify-center dark flex-col gap-6 min-h-screen w-full z-30 relative">
@@ -36,7 +39,7 @@ export default function SignUpForm() {
 						<p className="text-sm text-slate-400 mb-8">
 							By creating an account, you can access exclusive features and personalize your experience.
 						</p>
-						<form className="space-y-6" >
+						<form className="space-y-6" action={dispatch}>
 							<div className="flex flex-col">
 								<div>
 									<label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="username">Username</label>
@@ -45,13 +48,23 @@ export default function SignUpForm() {
 										id="username"
 										type="text"
 										name="username"
-										placeholder="@example"
+										placeholder="ex. zebar24"
 										maxLength={30}
-										value={username}
-										onChange={(e) => setUsername(e.target.value)}
-										required
+										aria-describedby="username-error"
 									/>
+
+									{/*//! error handling */}
+									<div id="username-error" aria-live="polite" aria-atomic="true">
+										{state?.errors?.username &&
+											state.errors.username.map((error: string) => (
+												<p className="mt-2 text-sm text-red-500" key={error}>
+													{error}
+												</p>
+											))}
+									</div>
+									{/*//! error handling */}
 								</div>
+
 								<div>
 									<label className="mb-3 mt-5 block text-sm font-medium text-slate-200" htmlFor="password">Password</label>
 									<input
@@ -60,10 +73,18 @@ export default function SignUpForm() {
 										type="password"
 										name="password"
 										placeholder="password here"
-										value={password}
-										onChange={(e) => setPassword(e.target.value)}
-										required
+										aria-describedby="password-error"
 									/>
+									{/*//! error handling */}
+									<div id="password-error" aria-live="polite" aria-atomic="true">
+										{state?.errors?.password &&
+											state.errors.password.map((error: string) => (
+												<p className="mt-2 text-sm text-red-500" key={error}>
+													{error}
+												</p>
+											))}
+									</div>
+									{/*//! error handling */}
 								</div>
 							</div>
 							<SubmitBtn />
