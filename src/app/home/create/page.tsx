@@ -21,6 +21,10 @@ const Page: React.FC = () => {
 	}, [isSidebarOpen]);
 
 	const [name, setName] = useState("");
+	const [title, setTitle] = useState("");
+	const [bio, setBio] = useState("");
+	const [profilePic, setProfilePic] = useState<string | null>(null);
+	const [logo, setLogo] = useState<string | null>(null);
 
 	return (
 		<div className='relative min-h-screen w-full dark overflow-hidden'>
@@ -37,7 +41,15 @@ const Page: React.FC = () => {
 						}
 					}}
 				>
-					{isSidebarOpen && isSidebarFullyOpen && <CreateCard setBorderColor={setBorderColor} setTheme={setTheme} setName={setName}/>}
+					{isSidebarOpen && isSidebarFullyOpen && <CreateCard 
+						setBorderColor={setBorderColor} 
+						setTheme={setTheme} 
+						setName={setName} 
+						setTitle={setTitle} 
+						setBio={setBio}
+						setProfilePic={setProfilePic}
+						setLogo={setLogo}
+					/>}
 
 					<button
 						onClick={toggleSidebar}
@@ -53,7 +65,7 @@ const Page: React.FC = () => {
 				</div>
 
 				<div className='w-full overflow-y-auto'>
-					<DevCard borderColor={borderColor} Theme={theme} name={name}/>
+					<DevCard borderColor={borderColor} Theme={theme} name={name} title={title} bio={bio} profilePic={profilePic} logo={logo}/>
 				</div>
 			</div>
 		</div>

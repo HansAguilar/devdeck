@@ -29,9 +29,14 @@ interface IFormStateProps {
 	setBorderColor: (color: string) => void;
 	setTheme: (theme: React.ReactNode) => void;
 	setName: (name: string) => void;
+	setTitle: (title: string) => void;
+	setBio: (bio: string) => void;
+	setProfilePic: (profilePic: string) => void;
+	setLogo: (logo: string) => void;
 }
 
-const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, setName }) => {
+
+const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, setName, setTitle, setBio, setProfilePic, setLogo }) => {
 	const handleBorderColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setBorderColor(event.target.value);
 	};
@@ -39,6 +44,32 @@ const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, se
 	const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const selectedTheme = event.target.value;
 		setTheme(cardThemes[selectedTheme]);
+	};
+
+	const handleProfileImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+        const selectedFile = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onloadend = () => {
+            const base64String = reader.result as string;
+            setProfilePic(base64String);
+        };
+    }
+	};
+
+	const handleLogoImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+        const selectedFile = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onloadend = () => {
+            const base64String = reader.result as string;
+            setLogo(base64String);
+        };
+    }
 	};
 	return (
 		<div className='flex flex-col gap-6 z-20 relative'>
@@ -64,6 +95,7 @@ const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, se
 					name="title"
 					placeholder="ex. frontend developer"
 					required
+					onChange={(e) => setTitle(e.target.value)}
 				/>
 			</div>
 
@@ -77,6 +109,7 @@ const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, se
 					placeholder="ex. An empty search history reveals more than a full one"
 					maxLength={30}
 					required
+					onChange={(e) => setBio(e.target.value)}
 				/>
 			</div>
 
@@ -102,6 +135,7 @@ const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, se
 					name="profilePicture"
 					accept="image/*"
 					required
+					onChange={handleProfileImageChange}
 				/>
 			</div>
 
@@ -114,6 +148,7 @@ const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, se
 					name="logo"
 					accept="image/*"
 					required
+					onChange={handleLogoImageChange}
 				/>
 			</div>
 
