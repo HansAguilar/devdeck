@@ -96,7 +96,8 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name, title, bio,
 								alt="jordans"
 								height="250"
 								width="250"
-								className="object-contain rounded-full border-4 border-[#5db2a9]"
+								className="object-contain rounded-full border-4 border-[#5db2a9] h-64 w-64"
+								style={{ maxHeight: '250px', maxWidth: '250px' }}
 							/>
 						</div>
 					</div>
