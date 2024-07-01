@@ -11,7 +11,6 @@ export default function Header() {
 							De<span className='text-purple-500'>v</span>Deck
 						</span>
 						<div className="flex space-x-4 text-sm text-slate-300">
-							<Link href="/">Home</Link>
 							<Link href="/">About</Link>
 							<Link href="/">Features</Link>
 						</div>
