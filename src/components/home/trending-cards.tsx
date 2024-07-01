@@ -13,7 +13,7 @@ export default async function TrendingCards() {
 				<div className='grid max-lg:grid-cols-3 max-md:grid-cols-2 grid-cols-4 w-full gap-4'>
 					{
 						data.map(card => (
-							<Card card={card} />
+							<Card key={card.id} card={card} />
 						))
 					}
 				</div>
