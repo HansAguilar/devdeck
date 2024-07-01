@@ -18,7 +18,7 @@ export type Cards = {
     bg: string;
     theme: string;
     tech_stack: string[];
-    total_likes: 0
-    views: 0;
+    total_likes: number;
+    views: number;
     User: User;
 };

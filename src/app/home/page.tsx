@@ -1,6 +1,7 @@
 import NavBar from '@/components/home/nav-bar'
 import TrendingCards from '@/components/home/trending-cards'
-import React from 'react'
+import { CardSkeleton } from '@/components/ui/Skeletons'
+import React, { Suspense } from 'react'
 
 export default function page() {
   return (
@@ -11,7 +12,12 @@ export default function page() {
       </div>
       <NavBar />
 
-      <TrendingCards />
+      <section className='py-20 container m-auto max-sm:px-4'>
+      <CardSkeleton />
+        {/* <Suspense fallback={<CardSkeleton />}>
+          <TrendingCards />
+        </Suspense> */}
+      </section>
 
       <footer className="bg-neutral-900 text-[#E9E9E9] py-2 text-sm">
         <div className="container mx-auto text-center">

@@ -1,21 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import React, { useCallback, useRef } from 'react';
-import { toPng } from 'html-to-image';
+import React, { useRef } from 'react';
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 
 const tech_stack = ["React", "MySQL", "Angular", "Node", "Java", "Redux"];
 
 interface DevCardProps {
 	borderColor?: string;
-	Theme?: React.ReactNode
+	Theme?: React.ReactNode;
+	profile: string;
 }
 
-const TestCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
+const TestCard: React.FC<DevCardProps> = ({ borderColor, Theme, profile }) => {
 	const ref = useRef<HTMLDivElement>(null);
-
-
 
 	return (
 		<div className="flex items-center dark flex-col gap-4 min-h-screen w-full z-30 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl">
@@ -23,12 +21,12 @@ const TestCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
 
 				<BackgroundGradient className="overflow-hidden relative rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900" borderColor={borderColor}>
 
-				{Theme} 
-				{/* Theme */}
+					{Theme}
+					{/* Theme */}
 
 					<div className="absolute -bottom-20 -left-20 opacity-40 grayscale-1 z-0 h-full w-full">
 						<Image
-							src={`/react.png`}
+							src={profile}
 							alt="jordans"
 							height="1600"
 							width="1500"
@@ -75,7 +73,7 @@ const TestCard: React.FC<DevCardProps> = ({ borderColor, Theme }) => {
 						</div>
 					</div>
 
-					
+
 					<div className="bg-[#00091D] p-4 w-full rounded">
 						<p className="z-40 relative text-sm text-neutral-600 dark:text-neutral-400">
 							Build fast, fail fast ⚡

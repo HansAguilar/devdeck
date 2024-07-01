@@ -1,42 +1,38 @@
 import React from 'react'
-import Skeleton from '../ui/skeleton'
 import { cn } from '@/utils/cn'
 import TestCard from './testCard'
 import { fetchCards } from '@/lib/data'
+import { Cards } from '@/lib/definitions'
 
 export default async function TrendingCards() {
 	const data = await fetchCards();
-	if (!data || data.length === 0) {
-		return <p className="mt-4 text-gray-400">No data available.</p>;
-	}
-
 	return (
-		<section className='py-20 container m-auto max-sm:px-4'>
+		<>
 			<div>
 				<h1 className='text-slate-300 font-bold text-2xl my-4'>Most Popular Cards 🔥</h1>
 				<div className='grid max-lg:grid-cols-3 max-md:grid-cols-2 grid-cols-4 w-full gap-4'>
-					<Card />
-					<Card />
-					<Card />
-					<Card />
+					{
+						data.map(card => (
+							<Card card={card} />
+						))
+					}
 				</div>
 			</div>
 
 			<div className='mt-6'>
 				<h1 className='text-slate-300 font-bold text-2xl my-4'>Recent</h1>
 				<div className='grid max-lg:grid-cols-3 max-md:grid-cols-2 grid-cols-4 w-full gap-4'>
+					{/* <Card />
 					<Card />
 					<Card />
-					<Card />
-					<Card />
+					<Card /> */}
 				</div>
 			</div>
-
-		</section >
+		</ >
 	)
 }
 
-function Card({ className }: { className?: string }) {
+function Card({ className, card }: { className?: string, card: Cards }) {
 
 	return (
 		<div className={cn("h-72 bg-zinc-800 rounded-3xl w-full overflow-hidden object-cover relative transition-transform transform hover:scale-105", className)}>
@@ -46,7 +42,7 @@ function Card({ className }: { className?: string }) {
 				<div className="flex gap-4 justify-center">
 					<div className="px-8 py-2 text-white text-sm rounded-md font-semibold hover:shadow-lg flex items-center gap-2 transition-transform transform hover:scale-105">
 						<button>
-							356
+							{card?.total_likes}
 						</button>
 						<svg
 							viewBox="0 0 1024 1024"
@@ -59,7 +55,7 @@ function Card({ className }: { className?: string }) {
 					</div>
 					<div className="px-8 py-2 text-white text-sm rounded-md font-semibold hover:shadow-lg flex items-center gap-2 transition-transform transform hover:scale-105">
 						<button>
-							1031
+							{card.views}
 						</button>
 						<svg
 							viewBox="0 0 1024 1024"
@@ -74,13 +70,13 @@ function Card({ className }: { className?: string }) {
 
 				{/* title */}
 				<p className="z-40 relative font-semibold text-base sm:text-xl  text-neutral-200 mt-4 mb-3 dark:text-neutral-200 text-center">
-					Senior Software Engineer
+					{card.title}
 				</p>
 			</div>
 			<div className="relative h-full w-full">
 				<div className="h-full w-full overflow-hidden">
 					{/*  for now */}
-					<TestCard />
+					<TestCard profile={card.profile} />
 				</div>
 			</div>
 		</div>
