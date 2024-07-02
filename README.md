@@ -9,9 +9,7 @@ DevDeck is a platform designed to empower developers by providing a space to cre
 * Discover job opportunities (if applicable)
 
 ## Technology Stack
-* Frontend: React, JavaScript, CSS
-* Backend: Node.js, Express.js, MongoDB
-* Other: Git, Docker
+* NextJS | Tailwind CSS | Aceternity UI | PostgreSQL | Vercel  
 
 ## Team
 * markj 
