@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
+import TechStack from './tech-stack-input';
+import TECH_STACKS from './tectStack';
 
 const inputStyle = `flex w-full border-none bg-gray-50 dark:bg-[#0A0E15] text-black dark:text-white shadow-input rounded-md p-2.5 text-sm file:border-0 file:bg-transparent 
           file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
@@ -24,6 +26,21 @@ const cardThemes: { [key: string]: React.ReactNode } = {
 	//dagdag nalang dito
 }
 
+// const TECH_STACKS = [
+//   "JavaScript",
+//   "TypeScript",
+//   "React.js",
+//   "Node.js",
+//   "Express.js",
+//   "MongoDB",
+//   "Firebase",
+//   "HTML5",
+//   "CSS3",
+//   "Git",
+//   "RESTful APIs",
+ 
+// ];
+
 interface IFormStateProps {
 	setBorderColor: (color: string) => void;
 	setTheme: (theme: React.ReactNode) => void;
@@ -32,10 +49,11 @@ interface IFormStateProps {
 	setBio: (bio: string) => void;
 	setProfilePic: (profilePic: string) => void;
 	setLogo: (logo: string) => void;
+	onTagsChange: (stack : string[])=> void
 }
 
 
-const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, setName, setTitle, setBio, setProfilePic, setLogo }) => {
+const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, setName, setTitle, setBio, setProfilePic, setLogo, onTagsChange }) => {
 	const handleBorderColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setBorderColor(event.target.value);
 	};
@@ -114,13 +132,7 @@ const FormContainer: React.FC<IFormStateProps> = ({ setBorderColor, setTheme, se
 
 			<div className='flex flex-col gap-2 px-8'>
 				<label className="block text-sm font-medium text-slate-200" htmlFor="skills">Tech Stack</label>
-				<input
-					className={inputStyle}
-					id="skills"
-					type="text"
-					name="skills"
-					required
-				/>
+				<TechStack suggestions={TECH_STACKS} onTagsChange={onTagsChange} /> {/* Use the TagInput component */}
 			</div>
 
 			<hr className="h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />

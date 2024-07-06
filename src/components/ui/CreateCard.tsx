@@ -10,9 +10,10 @@ interface CreateCardProps {
     setBio: (bio: string) => void;
     setProfilePic: (profilePic: string) => void;
     setLogo: (logo: string) => void;
+    onTagsChange: (stack : string[])=> void
 }
 
-const CreateCard: React.FC<CreateCardProps> = ({ setBorderColor, setTheme, setName, setTitle, setBio, setProfilePic, setLogo }) => {
+const CreateCard: React.FC<CreateCardProps> = ({ setBorderColor, setTheme, setName, setTitle, setBio, setProfilePic, setLogo, onTagsChange }) => {
     return (
         <form className="overflow-y-auto h-screen">
             <FormHeader />
@@ -24,6 +25,7 @@ const CreateCard: React.FC<CreateCardProps> = ({ setBorderColor, setTheme, setNa
                 setBio={setBio}
                 setProfilePic={setProfilePic}
                 setLogo={setLogo}
+                onTagsChange={onTagsChange}
 
             />
         </form>

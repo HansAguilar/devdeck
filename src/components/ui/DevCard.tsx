@@ -15,9 +15,10 @@ interface DevCardProps {
 	bio: string;
 	profilePic : string | null;
 	logo : string | null;
+	techStack : string[]
 }
 
-const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name, title, bio, profilePic,logo }) => {
+const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name, title, bio, profilePic,logo, techStack }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
 	const onButtonClick = useCallback(() => {
@@ -114,7 +115,7 @@ const DevCard: React.FC<DevCardProps> = ({ borderColor, Theme, name, title, bio,
 
 					<div className="flex flex-wrap gap-1 mt-4">
 						{
-							tech_stack.map(item => (
+							techStack.map(item => (
 								<button key={item} className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block">
 									<span className="absolute inset-0 overflow-hidden rounded-full">
 										<span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
