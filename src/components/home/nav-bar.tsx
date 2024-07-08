@@ -1,6 +1,7 @@
 import React from 'react'
 import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function NavBar() {
     const inputStyle = `flex h-10 w-80 border-none bg-gray-50 dark:bg-neutral-700/70 text-black dark:text-white shadow-input rounded-md p-3 text-sm file:border-0 file:bg-transparent 
@@ -33,11 +34,19 @@ export default function NavBar() {
                     </div>
                 </div>
 
-                <Link href="/home/create" className="cursor-pointer gap-2 flex items-center px-4 py-1.5 bg-neutral-700/70 text-white rounded-md font-semibold border-2 border-neutral-800 hover:border-neutral-700">
-                    <PlusIcon className='size-5 text-gray-400' />
-                    <span>Create</span>
+                <Link href="/home/create" className="cursor-pointer gap-2 flex items-center text-white">
+                    <div className='flex items-center gap-2 px-4 py-1.5 bg-neutral-700/70 font-semibold rounded-md border-2 border-neutral-800 hover:border-neutral-700'>
+                        <PlusIcon className='size-5 text-gray-400' />
+                        <span>Create</span>
+                    </div>
+                    <Image
+                        src="/aiah.png"
+                        width={35}
+                        height={30}
+                        alt='profile'
+                        className='rounded-md'
+                    />
                 </Link>
-
             </div>
         </div>
     )

@@ -33,7 +33,6 @@ export default async function TrendingCards() {
 }
 
 function Card({ className, card }: { className?: string, card: Cards }) {
-
 	return (
 		<div className={cn("h-72 bg-zinc-800 rounded-3xl w-full overflow-hidden object-cover relative transition-transform transform hover:scale-105", className)}>
 
@@ -81,26 +80,5 @@ function Card({ className, card }: { className?: string, card: Cards }) {
 			</div>
 		</div>
 	);
-	// return (
-	// 	<div className={cn("h-72 bg-zinc-800 rounded-md w-full overflow-hidden", className)}>
-
-	// 				{/* <div className='flex gap-4 items-center'>
-	// 					<Skeleton className="h-7 w-9 rounded-full" />
-	// 					<Skeleton className="h-4 w-full rounded-md" />
-	// 				</div>
-
-	// 				<div className='flex flex-col gap-2 mt-14'>
-	// 					<Skeleton className="h-4 w-full rounded-md" />
-	// 					<Skeleton className="h-4 w-10/12 rounded-md mr-auto" />
-	// 				</div>
-
-	// 				<div className='flex gap-2'>
-	// 					<Skeleton className="h-4 w-4 rounded-md" />
-	// 					<Skeleton className="h-4 w-4 rounded-md" />
-	// 					<Skeleton className="h-4 w-4 rounded-md" />
-	// 					<Skeleton className="h-4 w-4 rounded-md" />
-	// 				</div> */}
-
-	// 	</div>
-	// )
+	
 }

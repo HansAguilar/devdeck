@@ -10,9 +10,10 @@ export default function Header() {
 						<span className="text-lg text-slate-100 font-semibold">
 							De<span className='text-purple-500'>v</span>Deck
 						</span>
-						<div className="flex space-x-4 text-sm text-slate-300">
-							<Link href="/">About</Link>
-							<Link href="/">Features</Link>
+						<div className="flex items-center space-x-4 text-sm text-slate-300">
+							<Link className='font-medium' href="/">About</Link>
+							<Link className='font-medium' href="/">Features</Link>
+							<Link className='font-medium text-purple-500' href="/login">Login</Link>
 						</div>
 					</div>
 				</div>
